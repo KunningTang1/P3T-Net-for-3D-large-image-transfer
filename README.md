@@ -4,5 +4,6 @@ The objective of this network is to transfer a domain into another domain in an 
 P3T-Net is very computationally efficient. For a typical size of 3D micro-CT and nano-CT images at 1000^3 to 3000^3, it can handle these images in a local-degree workstation with a GPU of 24GB memory.
 
 Related paper to be cited:
+
 Tang, K., Armstrong, R., Mostaghimi, P., Niu, Y., Meyer, Q., Zhao, C., ... & Da Wang, Y. (2024). 
 Scaling Deep Learning for Material Imaging: A Pseudo-3d Model for Tera-Scale 3d Domain Transfer. Available at SSRN 4808378.
