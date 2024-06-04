@@ -1,0 +1,8 @@
+The is the source code for P3T-Net designed for 3D image-to-image transfer. P3T-Net is built purely in 2D but can work on 3D image. 
+The main application of this network is to process images of materials taken from 3D imaging techniques, such as micro-CT and nano-CT. 
+The objective of this network is to transfer a domain into another domain in an unparied manner, in terms of grayscale distribution, image style, and image semantics.
+P3T-Net is very computational effcient. For typical size of 3D micro-CT and nano-CT image at 1000^3 to 3000^3, it can handle these images in a local-degree workstation with a GPU of 24GB mmeory.
+
+Related paper to be cited:
+Tang, K., Armstrong, R., Mostaghimi, P., Niu, Y., Meyer, Q., Zhao, C., ... & Da Wang, Y. (2024). 
+Scaling Deep Learning for Material Imaging: A Pseudo-3d Model for Tera-Scale 3d Domain Transfer. Available at SSRN 4808378.
