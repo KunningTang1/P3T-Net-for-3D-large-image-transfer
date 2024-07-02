@@ -30,10 +30,6 @@ parser.add_argument('--lr', type=float, default=0.00003, help='initial learning 
 parser.add_argument('--decay_epoch', type=int, default=20, help='epoch to start linearly decaying the learning rate to 0')
 parser.add_argument('--input_nc', type=int, default=1, help='number of channels of input data')
 parser.add_argument('--output_nc', type=int, default=1, help='number of channels of output data')
-parser.add_argument('--cuda', action='store_true', help='use GPU computation')
-parser.add_argument('--size', type=int, default=224, help='size of the data crop (squared assumed)')
-parser.add_argument('--n_cpu', type=int, default=8, help='number of cpu threads to use during batch generation')
-
 parser.add_argument('--dir_train_data', type=str, default='H:\\DomainTransfer\\Case4\\Training2DCycSem_TT\\Train\\',help='dataset directory')
 parser.add_argument('--dir_test_data', type=str, default='H:\\DomainTransfer\\Case4\\Training2DCycSem_TT\\Train\\',help='dataset directory')
 opt = parser.parse_args()
@@ -41,12 +37,11 @@ print(opt)
 device = torch.device("cuda:0")
 if torch.cuda.is_available() and not opt.cuda:
     print("WARNING: You have a CUDA device, so you should probably run with --cuda")
-
+## Define class 
 colormap = [[1,1,1],[2,2,2],[3,3,3]]
 cm2lbl = np.zeros(256**3)
 for i,cm in enumerate(colormap):
     cm2lbl[(cm[0]*256+cm[1])*256+cm[2]] = i 
-
 def image2label(im):
     data = np.array(im, dtype='int32')
     idx = (data[:, :, 0] * 256 + data[:, :, 1]) * 256 + data[:, :, 2]
