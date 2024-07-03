@@ -50,4 +50,4 @@ This is noted that we are using the Absolute Path in the source code as the imag
 
 # Inference time
 For processing a whole 3D image at a typical micro/nano-CT scale (2000^3) on a RTX4090, the processing time is around 30mins.  
-
+![F4](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/258a7bb0-b6ee-48df-9b72-0dcece472785)
