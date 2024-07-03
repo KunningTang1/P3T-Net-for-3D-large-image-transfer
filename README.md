@@ -3,7 +3,9 @@
 This is the source code for P3T-Net designed for 3D image-to-image transfer. P3T-Net is built purely in 2D but can work on 3D images. 
 The main application of this network is to process images of materials taken from 3D imaging techniques, such as micro-CT and nano-CT. 
 The objective of this network is to transfer a domain into another domain in an unparied manner, in terms of grayscale distribution, image style, and image semantics.
-P3T-Net is very computationally efficient. For a typical size of 3D micro-CT and nano-CT images at 1000^3 to 3000^3, it can handle these images in a local-degree workstation with a GPU of 24GB memory.
+P3T-Net is very computationally efficient. For a typical size of 3D micro-CT and nano-CT images at 1000^3 to 3000^3, it can handle these images in a local-degree workstation with a GPU of 24GB memory.\
+Overall architecture for P3T-Net 
+![Figure1 (1)](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/81a883e3-3fb3-4df6-a24f-e00faa66a6ea)
 
 # Examples
 Here are two examples of using P3T-Net to transfer a dynamic scan micro-CT image of sandstone to a very high-quality image:
