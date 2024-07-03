@@ -1,4 +1,4 @@
-# PET-Net — PyTorch implementation
+# P3T-Net — PyTorch implementation
 
 This is the source code for P3T-Net designed for 3D image-to-image transfer. P3T-Net is built purely in 2D but can work on 3D images. 
 The main application of this network is to process images of materials taken from 3D imaging techniques, such as micro-CT and nano-CT. 
