@@ -1,4 +1,4 @@
-**PET-Net — PyTorch implementation
+#PET-Net — PyTorch implementation
 
 This is the source code for P3T-Net designed for 3D image-to-image transfer. P3T-Net is built purely in 2D but can work on 3D images. 
 The main application of this network is to process images of materials taken from 3D imaging techniques, such as micro-CT and nano-CT. 
@@ -12,7 +12,7 @@ Here are two examples of using P3T-Net to transfer a dynamic scan micro-CT image
 Here is an example of using P3T-Net to transfer a fast scan micro-CT image of a fuel cell to a very high-quality image:
 ![F3](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/d29f8c01-2265-4e34-bbe2-8c4155eb6385)
 
-**Requirements
+#Requirements
 
 Linux and Windows are supported, but the presented code is implemented under Windows.
 
@@ -25,7 +25,7 @@ CUDA toolkit 11.0 or later. Use at least version 11.1 if running on RTX 4090.
 Python image processing libraries are required, which are scikit-image 0.17.2 and Pillow 3.10.1.
 
 
-**Preparing datasets
+#Preparing datasets
 
 Two 3D images are required to train the P3T-Net, one serves as the source domain, and another serves as the target domain. 
 
