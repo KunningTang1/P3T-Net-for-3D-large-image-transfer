@@ -37,5 +37,14 @@ Example datasets for demonstration can be found at https://zenodo.org/records/12
 This dataset includes a nano-CT image of a dual-mode scan of a Lithium-ion battery cathode (voxel size: 128nm); and a nano-CT image of a single-mode scan of a lithium-ion battery cathode (voxel size: 128nm).
 
 A step-by-step data preparation.
-1. Load these two 8-bit nano-CT 3D images crop them into patches and save them in two separate files, one for the source domain, another for the target domain.\
-2. For the target domain image, segment the image into user-defined phases, for the example given, the image is segmented into 
+1. For the target domain image, segment the 8-bit grayscale image into user-defined phases, for the example given, the image is segmented into pore space and solid phase using a threshold value of 121.\
+2. Crop the grayscale target image and its segmented image into patches and save them in two separate files, run Semantic_Indication_Modules.py for training the Semantic Indication Module using these grayscale patches as input and segmented patches as ground truth, and save the trained model.\
+3. Crop the same number of patches from the Source domain image with the same size as the target patches and save them into a third file.
+4. Run Domain_Transfer_and_Semantic_Consistency_Module.py using the patches from all three files and load the pre-trained Semantic Indication Module for computing semantic consistency. After training, save the trained model.\
+5. Load the trained domain transfer module, and infer on all 2D slices across the X-Y plane, and stack them into a new 3D image. Transpose the new 3D image and the misalignment issue can be observed. \
+6. Crop 3D patches (We use 64x64x64) from the new 3D image and save them into a new file.\
+7. Run Misalignment_Fixing_Module.py using this 3D patches.\
+8. For inference, run the Inference.py file by loading a new 3D image.\
+
+This is noted that we are using the Absolute Path in the source code as the images we dealing with are very large (GB-scale per 3D domain). Ensure that the path is changed to your own direction.
+   
