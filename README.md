@@ -34,4 +34,6 @@ Example datasets for demonstration can be found at https://zenodo.org/records/12
 
 This dataset includes a nano-CT image of a dual-mode scan of a Lithium-ion battery cathode (voxel size: 128nm); and a nano-CT image of a single-mode scan of a lithium-ion battery cathode (voxel size: 128nm).
 
-
+A step-by-step data preparation.
+1. Load these two 8-bit nano-CT 3D images crop them into patches and save them in two separate files, one for the source domain, another for the target domain.\
+2. For the target domain image, segment the image into user-defined phases, for the example given, the image is segmented into 
