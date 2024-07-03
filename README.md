@@ -4,7 +4,7 @@ This is the source code for P3T-Net designed for 3D image-to-image transfer. P3T
 The main application of this network is to process images of materials taken from 3D imaging techniques, such as micro-CT and nano-CT. 
 The objective of this network is to transfer a domain into another domain in an unparied manner, in terms of grayscale distribution, image style, and image semantics.
 P3T-Net is very computationally efficient. For a typical size of 3D micro-CT and nano-CT images at 1000^3 to 3000^3, it can handle these images in a local-degree workstation with a GPU of 24GB memory.\
-Overall architecture for P3T-Net 
+The overall architecture for P3T-Net 
 ![Figure1 (1)](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/81a883e3-3fb3-4df6-a24f-e00faa66a6ea)
 
 # Examples
@@ -25,7 +25,7 @@ NVIDIA GPUs with at least 12 GB of memory. We have done all testing and developm
 
 CUDA toolkit 11.0 or later. Use at least version 11.1 if running on RTX 4090.
 
-Python image processing libraries are required, which are scikit-image 0.17.2 and Pillow 3.10.1.
+Python image processing libraries are required, which are scikit-image 0.17.2, OpenCV 4.4.0.44, and Pillow 3.10.1. We use the Anaconda3 distribution which installs most of these by default.
 
 
 # Preparing datasets
