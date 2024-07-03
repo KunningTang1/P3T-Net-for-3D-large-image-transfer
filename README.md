@@ -20,6 +20,7 @@ Python image processing libraries are required, which are scikit-image 0.17.2 an
 
 
 Preparing datasets
+
 Two 3D images are required to train the P3T-Net, one serves as the source domain, and another serves as the target domain. 
 Example datasets for demonstration can be found at https://zenodo.org/records/12630142. 
 This dataset includes a nano-CT image of a dual-mode scan of a Lithium-ion battery cathode (voxel size: 128nm); and a nano-CT image of a single-mode scan of a lithium-ion battery cathode (voxel size: 128nm).
