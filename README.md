@@ -4,5 +4,4 @@ The objective of this network is to transfer a domain into another domain in an 
 P3T-Net is very computationally efficient. For a typical size of 3D micro-CT and nano-CT images at 1000^3 to 3000^3, it can handle these images in a local-degree workstation with a GPU of 24GB memory.
 
 Here is an example of using P3T-Net to transfer a dynamic scan micro-CT image to a very high-quality image:
-![Noisyimage](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/ed26557d-fc41-429c-a3fd-197dec7aa680)
-![cleaniimage](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/3981b577-1e1a-4bb6-89be-658dde67f9c1)
+![F1](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/8a2c9498-2779-4e3f-a9eb-a3fd354060ce)
