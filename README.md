@@ -47,4 +47,7 @@ A step-by-step data preparation.
 8. For inference, run the Inference.py file by loading a new 3D image.
 
 This is noted that we are using the Absolute Path in the source code as the images we dealing with are very large (GB-scale per 3D domain). Ensure that the path is changed to your own direction.
-   
+
+# Inference time
+For processing a whole 3D image at a typical micro/nano-CT scale (2000^3) on a RTX4090, the processing time is around 30mins.  
+
