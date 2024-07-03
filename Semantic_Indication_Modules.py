@@ -5,6 +5,7 @@ from torch.utils.data import DataLoader
 import numpy as np
 from PIL import Image
 from datetime import datetime
+
 def unet_conv(in_planes, out_planes):
     conv = nn.Sequential(
         nn.Conv2d(in_planes, out_planes, 3, 1, 1),
@@ -15,18 +16,16 @@ def unet_conv(in_planes, out_planes):
         nn.ReLU(False),
     )
     return conv
-
-
 class Uresnet(nn.Module):
     def __init__(self, input_nbr = 1,label_nbr = 3, block = 28):
         super(Uresnet, self).__init__()
         
-        # forwarf
+        # forward
         self.downconv1 = nn.Sequential(
             nn.Conv2d(input_nbr, 64, 3, 1, 1),
             nn.BatchNorm2d(64),
             nn.ReLU(True),
-        )      # No.1 long skip 
+        ) 
         
         self.maxpool = nn.MaxPool2d(2, 2)
         
@@ -113,49 +112,46 @@ class Uresnet(nn.Module):
             nn.Linear(128, 10)
             )
 
-    def forward(self, x):
-        
+    def forward(self, x): 
         # encoding
         x1 = self.downconv1(x) 
  
         x2 = self.maxpool(x1)     
         x3 = self.downconv2(x2)
         x4 = self.downconv3(x3)      
-        x4 += x3
+        x4 = x3 + x4
         x5 = self.maxpool(x4)
         
         x6 = self.downconv4(x5)
         x7 = self.downconv5(x6)
-        x7 += x6
+        x7 = x6 + x7
         x8 = self.maxpool(x7)
         
         x9 = self.downconv6(x8)
         x10 = self.downconv7(x9)
-        x10 += x9
+        x10 = x9 + x10
       
         y3 = nn.functional.interpolate(x10, mode='bilinear', scale_factor=2, align_corners=True)
         y4 = self.updeconv2(y3)
         y5 = self.upconv3(torch.cat([y4, x7],1))
         y6 = self.upconv4(y5)
-        y6 += y5
+        y6 = y5 + y6
         
         y6 = nn.functional.interpolate(y6, mode='bilinear', scale_factor=2, align_corners=True)
         y7 = self.updeconv3(y6)   
         y8 = self.upconv5(torch.cat([y7, x4],1))
         y9 = self.upconv6(y8)
-        y9 += y8
+        y9 = y8 + y9
         
         y9 = nn.functional.interpolate(y9, mode='bilinear', scale_factor=2, align_corners=True)
         y10= self.updeconv4(y9)
         y11 = self.upconv7(torch.cat([y10, x1],1))
         y12 = self.upconv8(y11)
-        y12 += y11
+        y12 = y11 + y12
      
         out = self.last(y12)
         
         full = x10.view(x10.size(0), -1)
-        
-        # print(full.size())
         full = self.fc_params(full)
         score = self.classifier(full)
         
@@ -251,35 +247,35 @@ class Uresnet1(nn.Module):
         x2 = self.maxpool(x1)     
         x3 = self.downconv2(x2)
         x4 = self.downconv3(x3)      
-        x4 += x3
+        x4 = x3+ x4
         x5 = self.maxpool(x4)
         
         x6 = self.downconv4(x5)
         x7 = self.downconv5(x6)
-        x7 += x6
+        x7 = x6 + x7
         x8 = self.maxpool(x7)
         
         x9 = self.downconv6(x8)
         x10 = self.downconv7(x9)
-        x10 += x9
+        x10 = x9 + x10
       
         y3 = nn.functional.interpolate(x10, mode='bilinear', scale_factor=2, align_corners=True)
         y4 = self.updeconv2(y3)
         y5 = self.upconv3(torch.cat([y4, x7],1))
         y6 = self.upconv4(y5)
-        y6 += y5
+        y6 = y5 + y6
         
         y6 = nn.functional.interpolate(y6, mode='bilinear', scale_factor=2, align_corners=True)
         y7 = self.updeconv3(y6)   
         y8 = self.upconv5(torch.cat([y7, x4],1))
         y9 = self.upconv6(y8)
-        y9 += y8
+        y9 = y8 + y9
         
         y9 = nn.functional.interpolate(y9, mode='bilinear', scale_factor=2, align_corners=True)
         y10= self.updeconv4(y9)
         y11 = self.upconv7(torch.cat([y10, x1],1))
         y12 = self.upconv8(y11)
-        y12 += y11
+        y12 = y11 + y12
      
         out = self.last(y12)
         
@@ -296,9 +292,9 @@ if __name__ == "__main__":
     if torch.cuda.is_available():
         net = net.cuda()    
     num_classes = len(colormap)
-    cm2lbl = np.zeros(256**3) 
+    cm2lbl = np.zeros(256**3)
     for i,cm in enumerate(colormap):
-        cm2lbl[(cm[0]*256+cm[1])*256+cm[2]] = i # 建立索引
+        cm2lbl[(cm[0]*256+cm[1])*256+cm[2]] = i
     
     def image2label(im):
         data = np.array(im, dtype='int32')
@@ -309,13 +305,10 @@ if __name__ == "__main__":
     ROOT = "H:\\DomainTransfer\\Case4\\Training2DCycSem_TT\\"
     # Reading image data
     def read_image(mode="train", val=False):
-        if(mode=="train"):    # 加载训练数据
+        if(mode=="train"): 
             filename = ROOT + "\\train.txt"
-        elif(mode == "test"):    # 加载测试数据
+        elif(mode == "test"): 
             filename = ROOT + "\\test.txt"
-        # elif(mode == "val"):
-        #     filename = ROOT + "/auguval.txt"
-    
         data = []
         label = []
         with open(filename, "r") as f:
@@ -344,7 +337,6 @@ if __name__ == "__main__":
     
     def image_transforms(data, label, height=size, width=size):
         data, label = crop(data, label, height, width)
-        # convert to tensor, and normalization
         im_tfs = tfs.Compose([
             tfs.ToTensor(),
         ])
@@ -352,7 +344,7 @@ if __name__ == "__main__":
         data = im_tfs(data)
         label = np.array(label)
         label = image2label(label)
-        label = torch.from_numpy(label).long()   # CrossEntropyLoss require a long() type
+        label = torch.from_numpy(label).long()
         return data, label
     
     class SegmentDataset(torch.utils.data.Dataset):
@@ -389,6 +381,7 @@ if __name__ == "__main__":
     train_data = DataLoader(Segment_train, batch_size= 20, shuffle=True)
     test_data = DataLoader(Segment_test, batch_size=4)
     
+    # Confusion matrix
     def _fast_hist(label_true, label_pred, n_class):
     
         mask = (label_true >= 0) & (label_true < n_class)
@@ -397,8 +390,18 @@ if __name__ == "__main__":
             label_pred[mask], minlength=n_class ** 2).reshape(n_class, n_class)
         return hist
     
-
+    """
+    label_trues: right label
+    label_preds: predic label
+    n_class: number of classes
+    """
     def label_accuracy_score(label_trues, label_preds, n_class):
+        """Returns accuracy score evaluation result.
+          - overall accuracy
+          - mean accuracy
+          - mean IU
+          - fwavacc
+        """
         hist = np.zeros((n_class, n_class))
     
         for lt, lp in zip(label_trues, label_preds):
@@ -426,11 +429,9 @@ if __name__ == "__main__":
             weight_p += [p]
             
     optimizer = torch.optim.Adam(net.parameters(), lr=LEARNING_RATE, betas=(0.9, 0.999), eps=1e-08)
-       
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.5 , patience=4, verbose=False, threshold=0.0001, threshold_mode='rel', cooldown=0, min_lr=0, eps=1e-08)
     criterion = nn.CrossEntropyLoss()
-
-        
+ 
     EPOCH = 50
     
     # train data record
@@ -444,7 +445,6 @@ if __name__ == "__main__":
     k = 0
 
     for epoch in range(EPOCH):
-        Num_0_test= Num_1_test=Num_2_test= Num_3_test=Num_4_test= Num_5_test = len(Segment_test)
         _train_loss = 0
         _train_acc = 0
         _train_acc_cls = 0
@@ -457,10 +457,8 @@ if __name__ == "__main__":
             if torch.cuda.is_available():
                 x = x.cuda()
                 label = label.cuda()
-        
-                
+                      
             out,_,_= net(x)
-            
             loss = criterion(out, label)
             optimizer.zero_grad()
             loss.backward()
@@ -490,7 +488,6 @@ if __name__ == "__main__":
 
         if epoch == k:
             PATH = 'H:\\DomainTransfer\\Case4\\checkpoints\\ck_pretrainSegnet_TT\\%d' % (epoch+1) +'.pt'
-            # PATH = 'H:\\DomainTransfer\\Case2\\checkpoints\\ck_pretrain3D\\%d' % (epoch+1) +'.pt'
             torch.save({
                         'epoch': epoch,
                         'net_state_dict': net.state_dict(),
