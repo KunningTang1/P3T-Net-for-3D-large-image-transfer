@@ -32,7 +32,14 @@ Python image processing libraries are required, which are scikit-image 0.17.2, O
 
 Two 3D images are required to train the P3T-Net, one serves as the source domain, and another serves as the target domain. 
 
-Example datasets for demonstration can be found at https://zenodo.org/records/12630142. 
+Example datasets for demonstration can be found at https://zenodo.org/records/12631632, including:
+A pre-trained model for the semantic indication module, which uses a U-ResNet architecture, named Semantic_Indication_Modules.pt\
+A pre-trained model for the domain transfer module, which uses a CycleGAN-type architecture, named Domain_transfer.pt\
+A pre-trained model for misalignment fixing, which uses a GAN-based architecture, named Misalignment_Fixing_Module.pt\
+A noisy synchrotron scan of a sandstone image under a core flooding condition is used for testing.
+
+These pre-trained models were trained to transfer the noisy dynamic synchrotron scan to a lab-based slow scan, as shown in the Example Section.\
+These three trained models can be loaded into Inference.py, and perform denoising on the provided noisy synchrotron scan
 
 This dataset includes a nano-CT image of a dual-mode scan of a Lithium-ion battery cathode (voxel size: 128nm); and a nano-CT image of a single-mode scan of a lithium-ion battery cathode (voxel size: 128nm).
 
