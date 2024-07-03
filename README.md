@@ -8,4 +8,5 @@ Here are two examples of using P3T-Net to transfer a dynamic scan micro-CT image
 ![F2](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/2b162de5-90a3-4d73-a9cb-bbb895be0c4c)
 
 Here is an example of using P3T-Net to transfer a fast scan micro-CT image of a fuel cell to a very high-quality image:
-![F3](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/8f9ef871-7a7c-4aa8-b02a-030a82cddec5)
+![F3](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/d29f8c01-2265-4e34-bbe2-8c4155eb6385)
+
