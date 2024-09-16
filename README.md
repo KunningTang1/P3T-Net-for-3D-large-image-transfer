@@ -25,7 +25,7 @@ Linux and Windows are supported as well as a docker image, Three versions are pr
    
 3. Docker images. A docker image is also created for the code, allowing it to be run easily by importing it into a Docker container.
 
-The code and an example dataset for result reproduction can be found in https://zenodo.org/records/13766393.
+The code and an example dataset for result reproduction can be found at https://zenodo.org/records/13766393.
 
 Step to run the code for result reproduction:
 
@@ -76,11 +76,15 @@ For Windows users, simply run these comments: 
 
 For the docker image, make sure the docker and NVIDIA Container Toolkit (https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) have been installed. After downloading the "docker_images_p3tnet.tar", follow the  comments below to run the code in the docker container:
 
-Step 1: run: sudo cat docker_images.tar | sudo docker import  - p3t-net/test. To load the docker image into the docker
+Step 1: run: sudo cat docker_images.tar | sudo docker import  - p3t-net/test. 
+
+To load the docker image into the docker
 
 Step 2: run: sudo docker images. To check if the image is successfully loaded.
 
-Step 3: run: sudo docker run --gpus all  -ti --name work1    p3t-net/test:latest bash. You should be able to enter the docker container.
+Step 3: run: sudo docker run --gpus all  -ti --name work1    p3t-net/test:latest bash. 
+
+You should be able to enter the docker container.
 
 Step 4: run: cd ./root/code. To enter the code directory.
 
