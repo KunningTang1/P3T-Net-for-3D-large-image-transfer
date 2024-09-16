@@ -25,7 +25,7 @@ Linux and Windows are supported, Three versions are provided:
    
 3. Docker images. A docker image is also created for the code, allowing it to be run easily by importing it into a Docker container.
 
-Step to run the code:
+Step to run the code for result reproduction:
 
 1. The example dataset is located in the file "Testingdata".
   
