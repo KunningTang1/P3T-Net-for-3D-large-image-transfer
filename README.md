@@ -17,15 +17,56 @@ Here is an example of using P3T-Net to transfer a fast scan micro-CT image of a 
 
 # Requirements
 
-Linux and Windows are supported, but the presented code is implemented under Windows.
+Linux and Windows are supported, Three versions are provided:
+
+1. Code for Linux users. The required environments and testing data are included within the code package, allowing users to execute the P3T-NET training and inference directly on a Linux system without the need to manually set up the environments after downloading the package.
+2. Code for Windows users. The required environments and testing data are included within the code package, allowing users to execute the P3T-NET training and inference directly on a Windows system without the need to manually set up the environments after downloading the package.
+3. Docker images. A docker image is also created for the code, allowing it to be run easily by importing it into a Docker container.
+
+Step to run the code:
+
+1. The example dataset is located in the file "Testingdata"
+2. Run TrainingDataPrepare.py to create all the files and training images from the example dataset.
+3. Run Semantic_Indication_Modules.py to train the first module for image segmentation.
+4. Run Test_SemanticModule.py to test the segmentation network (if needed).
+5. Run Domain_Transfer_and_Semantic_Consistency_Module.py to train the second module for domain transfer.
+6. Run Misalignment_Fixing_Module.py to train the last module for third-axis misalignment fixing 
+7. Run Inference.py to use all trained modules for prediction.
+
+All the networks are stored in models.py and some functions are in utils.py.
+
+For Linux users, simply run these comments: 
+./1run_TrainingDataPrepare.sh
+./2run_Semantic_Indication_Modules.sh
+./3run_Test_SemanticModule.sh
+./4run_Domain_Transfer_and_Semantic_Consistency_Module.sh
+./5run_Misalignment_Fixing_Module.sh
+./6run_Inference.sh
+
+For Windows users, simply run these comments: 
+./1run_TrainingDataPrepare.sh
+./2run_Semantic_Indication_Modules.sh
+./3run_Test_SemanticModule.sh
+./4run_Domain_Transfer_and_Semantic_Consistency_Module.sh
+./5run_Misalignment_Fixing_Module.sh
+./6run_Inference.sh
+
+
+For the docker image, make sure the docker and NVIDIA Container Toolkit (https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) have been installed. After downloading the "docker_images_p3tnet.tar", follow the  comments below to run the code in the docker container:
+
+Step 1: run: sudo cat docker_images.tar | sudo docker import  - p3t-net/test. To load the docker image into the docker
+Step 2: run: sudo docker images. To check if the image is successfully loaded.
+Step 3: run: sudo docker run --gpus all  -ti --name work1    p3t-net/test:latest bash. You should be able to enter the docker container.
+Step 4: run: cd ./root/code. To enter the code directory.
+Step 5: Run the code by using: 
+./1run_TrainingDataPrepare.sh
+./2run_Semantic_Indication_Modules.sh
+./3run_Test_SemanticModule.sh
+./4run_Domain_Transfer_and_Semantic_Consistency_Module.sh
+./5run_Misalignment_Fixing_Module.sh
+./6run_Inference.sh
 
 NVIDIA GPUs with at least 12 GB of memory. We have done all testing and development using NVIDIA RTX4090 with 24GB of memory.
-
-64-bit Python 3.8.10 and PyTorch 2.3.1. See https://pytorch.org/ for PyTorch install instructions.
-
-CUDA toolkit 11.0 or later. Use at least version 11.1 if running on RTX 4090.
-
-Python image processing libraries are required, which are scikit-image 0.17.2, OpenCV 4.4.0.44, and Pillow 3.10.1. We use the Anaconda3 distribution which installs most of these by default.
 
 
 # Preparing datasets
@@ -56,5 +97,5 @@ A step-by-step data preparation.
 This is noted that we are using the Absolute Path in the source code as the images we dealing with are very large (GB-scale per 3D domain). Ensure that the path is changed to your own direction.
 
 # Inference time
-For processing a whole 3D image at a typical micro/nano-CT scale (2000^3) on a RTX4090, the processing time is around 30mins.  
+For processing a whole 3D image at a typical micro/nano-CT scale (2000^3) on an RTX4090, the processing time is around 30 minutes.  
 ![F4](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/258a7bb0-b6ee-48df-9b72-0dcece472785)
