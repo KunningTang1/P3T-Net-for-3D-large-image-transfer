@@ -17,13 +17,15 @@ Here is an example of using P3T-Net to transfer a fast scan micro-CT image of a 
 
 # Requirements
 
-Linux and Windows are supported, Three versions are provided:
+Linux and Windows are supported as well as a docker image, Three versions are provided:
 
 1. Code for Linux users. The required environments and testing data are included within the code package, allowing users to execute the P3T-NET training and inference directly on a Linux system without the need to manually set up the environments after downloading the package.
    
 2. Code for Windows users. The required environments and testing data are included within the code package, allowing users to execute the P3T-NET training and inference directly on a Windows system without the need to manually set up the environments after downloading the package.
    
 3. Docker images. A docker image is also created for the code, allowing it to be run easily by importing it into a Docker container.
+
+The code and an example dataset for result reproduction can be found in https://zenodo.org/records/13766393.
 
 Step to run the code for result reproduction:
 
