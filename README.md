@@ -19,19 +19,27 @@ Here is an example of using P3T-Net to transfer a fast scan micro-CT image of a 
 
 Linux and Windows are supported, Three versions are provided:
 
-1. Code for Linux users. The required environments and testing data are included within the code package, allowing users to execute the P3T-NET training and inference directly on a Linux system without the need to manually set up the environments after downloading the package.\
-2. Code for Windows users. The required environments and testing data are included within the code package, allowing users to execute the P3T-NET training and inference directly on a Windows system without the need to manually set up the environments after downloading the package.\
-3. Docker images. A docker image is also created for the code, allowing it to be run easily by importing it into a Docker container.\
+1. Code for Linux users. The required environments and testing data are included within the code package, allowing users to execute the P3T-NET training and inference directly on a Linux system without the need to manually set up the environments after downloading the package.
+   
+2. Code for Windows users. The required environments and testing data are included within the code package, allowing users to execute the P3T-NET training and inference directly on a Windows system without the need to manually set up the environments after downloading the package.
+   
+3. Docker images. A docker image is also created for the code, allowing it to be run easily by importing it into a Docker container.
 
 Step to run the code:
 
-1. The example dataset is located in the file "Testingdata".\
-2. Run TrainingDataPrepare.py to create all the files and training images from the example dataset.\
-3. Run Semantic_Indication_Modules.py to train the first module for image segmentation.\
-4. Run Test_SemanticModule.py to test the segmentation network (if needed).\
-5. Run Domain_Transfer_and_Semantic_Consistency_Module.py to train the second module for domain transfer.\
-6. Run Misalignment_Fixing_Module.py to train the last module for third-axis misalignment fixing. \
-7. Run Inference.py to use all trained modules for prediction.\
+1. The example dataset is located in the file "Testingdata".
+  
+2. Run TrainingDataPrepare.py to create all the files and training images from the example dataset.
+
+3. Run Semantic_Indication_Modules.py to train the first module for image segmentation.
+
+4. Run Test_SemanticModule.py to test the segmentation network (if needed).
+
+5. Run Domain_Transfer_and_Semantic_Consistency_Module.py to train the second module for domain transfer.
+
+6. Run Misalignment_Fixing_Module.py to train the last module for third-axis misalignment fixing.
+ 
+7. Run Inference.py to use all trained modules for prediction.
 
 All the networks are stored in models.py and some functions are in utils.py.
 
