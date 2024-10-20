@@ -134,18 +134,8 @@ for epoch in range(opt.epoch, opt.n_epochs):
         real_A = real_A.cuda(opt.gpu)
         real_B = real_B.cuda(opt.gpu)
 
-        # real_A = torch.transpose(real_A,0,2);
-        # real_A = torch.transpose(real_A,1,2);
-        # real_A = torch.transpose(real_A,2,3)
-        
-        # real_B = torch.transpose(real_B,0,2);
-        # real_B = torch.transpose(real_B,1,2);
         real_A = real_A.permute(2, 0, 3, 1)
         real_B = real_B.permute(2, 0, 1, 3)
-        # real_B = real_B.permute(2, 1, 0, 3)
-        # real_A = real_A.permute(2, 1, 3, 0)  
-        # real_B = real_B.permute(2, 1, 3, 0)  
-        # real_B_xy = real_B
         
         optimizer_G_stack.zero_grad()
         target_real = torch.ones(real_A.size(0), device=device, requires_grad=False).cuda(opt.gpu)
