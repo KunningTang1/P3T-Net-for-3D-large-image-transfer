@@ -45,7 +45,7 @@ Step to run the code for result reproduction:
 
 All the networks are stored in models.py and some functions are in utils.py.
 
-For Linux users, simply run these comments: 
+For Linux users, simply run these commands: 
 
 ./1run_TrainingDataPrepare.sh
 
@@ -59,19 +59,19 @@ For Linux users, simply run these comments: 
 
 ./6run_Inference.sh
 
-For Windows users, simply run these comments: 
+For Windows users, simply run these commands: 
 
-./1run_TrainingDataPrepare.sh
+./1run_TrainingDataPrepare.bat
 
-./2run_Semantic_Indication_Modules.sh
+./2run_Semantic_Indication_Modules.bat
 
-./3run_Test_SemanticModule.sh
+./3run_Test_SemanticModule.bat
 
-./4run_Domain_Transfer_and_Semantic_Consistency_Module.sh
+./4run_Domain_Transfer_and_Semantic_Consistency_Module.bat
 
-./5run_Misalignment_Fixing_Module.sh
+./5run_Misalignment_Fixing_Module.bat
 
-./6run_Inference.sh
+./6run_Inference.bat
 
 
 For the docker image, make sure the docker and NVIDIA Container Toolkit (https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) have been installed. After downloading the "docker_images_p3tnet.tar", follow the  comments below to run the code in the docker container:
