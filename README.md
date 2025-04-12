@@ -1,19 +1,23 @@
 # P3T-Net — PyTorch implementation
 
-This is the source code for P3T-Net designed for 3D image-to-image transfer. P3T-Net is built purely in 2D but can work on 3D images. 
+This is the source code for P3T-Net, designed for 3D image-to-image transfer. P3T-Net is built purely in 2D but can work on 3D images. 
 The main application of this network is to process images of materials taken from 3D imaging techniques, such as micro-CT and nano-CT. 
-The objective of this network is to transfer a domain into another domain in an unparied manner, in terms of grayscale distribution, image style, and image semantics.
+The objective of this network is to transfer a domain into another domain in an unpaired manner, in terms of grayscale distribution, image style, and image semantics.
 P3T-Net is very computationally efficient. For a typical size of 3D micro-CT and nano-CT images at 1000^3 to 3000^3, it can handle these images in a local-degree workstation with a GPU of 24GB memory.\
 The overall architecture for P3T-Net 
-![Figure1 (1)](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/81a883e3-3fb3-4df6-a24f-e00faa66a6ea)
+![Figure1_new1](https://github.com/user-attachments/assets/a6b32923-d8e3-4abb-879f-b80991b5e1ab)
+
 
 # Examples
-Here are two examples of using P3T-Net to transfer a dynamic scan micro-CT image of sandstone to a very high-quality image:
-![F1](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/8a2c9498-2779-4e3f-a9eb-a3fd354060ce)
-![F2](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/2b162de5-90a3-4d73-a9cb-bbb895be0c4c)
+Here are six examples of domain transfer using P3T-Net:
+![CASES](https://github.com/user-attachments/assets/e9af8cf9-84fe-4036-90e4-5e5664264772)
 
-Here is an example of using P3T-Net to transfer a fast scan micro-CT image of a fuel cell to a very high-quality image:
-![F3](https://github.com/KunningTang1/P3T-Net-for-3D-large-image-transfer/assets/97938972/d29f8c01-2265-4e34-bbe2-8c4155eb6385)
+Case 1: Lab-based micro-CT scan of a sandstone rock with different scanning times.
+Case 2: Sandstone sample under two-phase flow conditions scanned with different imaging techniques (lab-based micro-CT scanner and synchrotron scanner)
+Case 3: Nano-CT of Lithium-ion cathode scanned with dual-mode and single-mode.
+Case 4: Sandstone sample under two-phase flow scanned with a lab-based micro-CT scanner and DynaTOM scanner
+Case 5: Domain transfer from noisy image to extremely clean domain of a sandstone rock under two-phase flow
+Case 6: Lab-based micro-CT scan of a fuel cell's gas diffusion layer with different scanning times.
 
 # Requirements
 
@@ -27,7 +31,7 @@ Linux and Windows are supported as well as a docker image, Three versions are pr
 
 The code and an example dataset for result reproduction can be found at https://zenodo.org/records/13766393.
 
-Step to run the code for result reproduction:
+Steps to run the code for result reproduction:
 
 1. The example dataset is located in the file "Testingdata".
   
@@ -107,7 +111,7 @@ NVIDIA GPUs with at least 12 GB of memory. We have done all testing and developm
 
 # Preparing datasets
 
-Two 3D images are required to train the P3T-Net, one serves as the source domain, and another serves as the target domain. 
+Two 3D images are required to train the P3T-Net; one serves as the source domain, and another serves as the target domain. 
 
 Example datasets for demonstration can be found at https://zenodo.org/records/12631632, including:
 A pre-trained model for the semantic indication module, which uses a U-ResNet architecture, named Semantic_Indication_Modules.pt\
@@ -121,8 +125,8 @@ These three trained models can be loaded into Inference.py, and perform denoisin
 This dataset includes a nano-CT image of a dual-mode scan of a Lithium-ion battery cathode (voxel size: 128nm); and a nano-CT image of a single-mode scan of a lithium-ion battery cathode (voxel size: 128nm).
 
 A step-by-step data preparation.
-1. For the target domain image, segment the 8-bit grayscale image into user-defined phases, for the example given, the image is segmented into pore space and solid phase using a threshold value of 121.
-2. Crop the grayscale target image and its segmented image into patches and save them in two separate files, run Semantic_Indication_Modules.py for training the Semantic Indication Module using these grayscale patches as input and segmented patches as ground truth, and save the trained model.
+1. For the target domain image, segment the 8-bit grayscale image into user-defined phases. For the example, the image is segmented into pore space and solid phase using a threshold value of 121.
+2. Crop the grayscale target image and its segmented image into patches and save them in two separate files. Run Semantic_Indication_Modules.py for training the Semantic Indication Module using these grayscale patches as input and segmented patches as ground truth, and save the trained model.
 3. Crop the same number of patches from the Source domain image with the same size as the target patches and save them into a third file.
 4. Run Domain_Transfer_and_Semantic_Consistency_Module.py using the patches from all three files and load the pre-trained Semantic Indication Module for computing semantic consistency. After training, save the trained model.
 5. Load the trained domain transfer module, infer on all 2D slices across the X-Y plane, and stack them into a new 3D image. Transpose the new 3D image and the misalignment issue can be observed.
